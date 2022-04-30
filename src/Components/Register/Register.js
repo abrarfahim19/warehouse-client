@@ -1,28 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Link, useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert"
+
 const theme = createTheme();
 
 const Register = () => {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
+  const [agree, setAgree] = useState(false);
+  const [
+      createUserWithEmailAndPassword,
+      user,
+      loading,
+      error,
+  ] = useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating] = useUpdateProfile(auth);
+
+  const navigate = useNavigate();
+  if(user){
+    navigate('/home');
+  }
+  const handleSubmit = async (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const name = data.get('firstName')+" "+ data.get('lastName');
+      const email= data.get('email');
+      const password= data.get('password');
+      await createUserWithEmailAndPassword(email, password);
+      await updateProfile({ displayName: name });
       };
-    
+  
       return (
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
@@ -84,6 +102,9 @@ const Register = () => {
                       autoComplete="new-password"
                     />
                   </Grid>
+                  {
+                    error&&<Alert severity="error">{error.message}</Alert>
+                  }
                   <Grid item xs={12}>
                     <FormControlLabel
                       control={<Checkbox value="allowExtraEmails" color="primary" />}
@@ -101,7 +122,7 @@ const Register = () => {
                 </Button>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link to='/login' >
                       Already have an account? Sign in
                     </Link>
                   </Grid>

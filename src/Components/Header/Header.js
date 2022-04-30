@@ -1,8 +1,12 @@
+import { signOut } from "firebase/auth";
 import React from "react";
-import { Container, Nav, Navbar} from "react-bootstrap";
+import { Button, Container, Nav, Navbar} from "react-bootstrap";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const Header = () => {
+    const [user, loading, error] = useAuthState(auth);
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
@@ -14,8 +18,13 @@ const Header = () => {
                         <Nav.Link as={Link} to="manage">Manage Item</Nav.Link>
                         <Nav.Link href="#add">Add Item</Nav.Link>
                         <Nav.Link href="#myitem">My Item</Nav.Link>
-                        <Nav.Link as={Link} to="login">LogIn</Nav.Link>
-                        <Nav.Link as={Link} to="register">SignUp</Nav.Link>
+                        {
+                            user?<Button onClick={()=> signOut(auth)}>LogOut</Button>:
+                            <>
+                                <Nav.Link as={Link} to="login">LogIn</Nav.Link>
+                                <Nav.Link as={Link} to="register">SignUp</Nav.Link>
+                            </>
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>
