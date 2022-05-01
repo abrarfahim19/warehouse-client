@@ -10,23 +10,32 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
 const theme = createTheme();
 
 const Login = () => {
+    let navigate = useNavigate();
+    let location = useLocation();
+    
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
-    const navigate = useNavigate();
-    if (user){
-        navigate('/home')
+    
+    if (loading) {
+        return <p>Loading...</p>
     }
+
+    let from = location.state?.from?.pathname || "/";
+    if (user){
+        navigate(from, { replace: true });
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
