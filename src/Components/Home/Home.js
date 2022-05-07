@@ -5,6 +5,7 @@ import Product from '../Product/Product';
 
 const Home = () => {
     const [products, setProducts] = useProducts();
+
     return (
         <div>
             <CustomModal></CustomModal>

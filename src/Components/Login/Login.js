@@ -36,12 +36,13 @@ const Login = () => {
         navigate(from, { replace: true });
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const email= data.get("email");
         const password= data.get("password");
-        signInWithEmailAndPassword(email, password)
+        await signInWithEmailAndPassword(email, password);
+        
     };
 
     return (

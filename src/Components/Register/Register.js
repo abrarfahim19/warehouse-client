@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import React, { useEffect, useState } from "react";
+import { useAuthState, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -26,20 +26,40 @@ const Register = () => {
       error,
   ] = useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating] = useUpdateProfile(auth);
+  const [user1] = useAuthState(auth);
 
   const navigate = useNavigate();
-  if(user){
-    navigate('/home');
-  }
+  
   const handleSubmit = async (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       const name = data.get('firstName')+" "+ data.get('lastName');
       const email= data.get('email');
       const password= data.get('password');
+      
       await createUserWithEmailAndPassword(email, password);
       await updateProfile({ displayName: name });
-      };
+      }
+      
+      console.log('from func:',user,'useAuth from func',user1);
+      
+      useEffect(()=>{
+        console.log('hello:::',user)
+        const url = `http://localhost:5000/user`;
+        if(user){
+          fetch (url,{
+            method: 'POST',
+            headers: {
+              'content-type':'application/json'
+            },
+            body : JSON.stringify(user)
+          })
+          .then(res => res.json())
+          .then(d => {console.log(d)})
+
+          navigate('/home');
+        }
+      },[user])
   
       return (
         <ThemeProvider theme={theme}>
