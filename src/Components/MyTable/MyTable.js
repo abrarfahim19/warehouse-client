@@ -2,16 +2,9 @@ import { Delete, Edit } from '@mui/icons-material';
 import {  IconButton } from '@mui/material';
 import React from 'react';
 
-const MyTable = ({product}) => {
+const MyTable = ({product,handleDelete,handleEdit}) => {
   const {name,price,image,author,supply,_id} = product;
 
-  const handleEdit = (id) => {
-    console.log('edit00',id)
-    
-  }
-  const handleDelete = (id) => {
-    console.log('Delete 00',id)
-  }
   return (
     <div>
       <div className="card d-flex flex-row align-items-center">
