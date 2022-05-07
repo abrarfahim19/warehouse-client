@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useProducts from "../../hooks/useProducts";
 import MyTable from "../MyTable/MyTable";
 
 const Manage = () => {
     const [products, setProducts] = useProducts();
-    const handleEdit = (id) => {
-        console.log("edit00", id);
+    const handleEdit = (id,result) => {
+        let url = `http://localhost:5000/inventory/${id}`
+        fetch (url,{
+            method: 'PUT',
+            headers: {
+              'content-type':'application/json'
+            },
+            body : JSON.stringify(result)
+          })
+          .then(res => res.json())
+          .then(d => {console.log(d)})
     };
+
+
     const handleDelete = (id) => {
         console.log("Delete 00", id);
         let url = `http://localhost:5000/inventory/${id}`;

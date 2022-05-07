@@ -8,7 +8,7 @@ const Home = () => {
 
     return (
         <div>
-            <CustomModal></CustomModal>
+            <CustomModal modalText={'Hello'}></CustomModal>
             <h1>This is Home</h1>
             <div className="row d-flex mx-auto align-items-center">
             {
