@@ -11,7 +11,7 @@ const Product = ({product}) => {
         console.log(id);
     }
     return (
-        <Card className='g-1 col-sm-12 col-md-6 mx-auto col-lg-4' sx={{ maxWidth: 200 }}>
+        <Card className='g-1 col-sm-12 col-md-6 mx-auto col-lg-4 vh-80' sx={{ maxWidth: 200 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"

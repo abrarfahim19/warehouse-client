@@ -18,7 +18,7 @@ const MyTable = ({product,handleDelete,handleEdit}) => {
           <h6 className="card-title col-sm-3 col-md-3">{supply}</h6>
           <div className="buttons col-sm-3 col-md-3">
             <div className="d-flex justify-content-between">
-            <EditModal ></EditModal>
+            <EditModal handleEdit={handleEdit} item={product} ></EditModal>
             <IconButton onClick={()=> handleDelete(_id)} color='error' aria-label="delete">
             <Delete /></IconButton>
             </div>
