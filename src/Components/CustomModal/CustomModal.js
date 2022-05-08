@@ -33,7 +33,8 @@ const CustomModal = () => {
     const stock = data.get('stock');
     const image = data.get('image');
     const supplier = data.get('supplier');
-    const result = {name,author,price,stock,supplier,image,email};
+    const sold = "0";
+    const result = {name,author,price,stock,supplier,image,sold,email};
     const url = `http://localhost:5000/inventory`;
     
     fetch (url,{

@@ -10,6 +10,7 @@ import RequireAuth from './Components/RequireAuth/RequireAuth';
 import ProductDetails from './Components/ProductDetails/ProductDetails';
 import Blog from './Components/Blog/Blog';
 import MyItem from './Components/MyItem/MyItem';
+import Notfound from './Components/NotFound/NotFound';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         </Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
+        <Route path="*" element={<Notfound></Notfound>}></Route>
       </Routes>
       {/* <Footer></Footer> */}
     </div>

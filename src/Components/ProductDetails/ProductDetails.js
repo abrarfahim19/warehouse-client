@@ -20,8 +20,27 @@ const ProductDetails = () => {
         reset,
         formState: { errors },
     } = useForm();
+
     const onSubmit = (data) => {
         console.log(data);
+        const {_id,...rest} = product;
+        console.log(rest.stock,rest.sold);
+        rest.stock = String(parseInt(data.stock)+parseInt(rest.stock));
+        // rest.sold = String(parseInt(data.sold)+parseInt(rest.sold));
+        rest._id=_id;
+        let url = `http://localhost:5000/inventory/${_id}`;
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(rest),
+        })
+            .then((res) => res.json())
+            .then((d) => {
+                console.log(d);
+                setProduct(d);
+            });
     };
 
     const navigate = useNavigate();
@@ -30,20 +49,34 @@ const ProductDetails = () => {
             <div className=" top flex-row justify-content-around d-flex mt-5">
                 <div className="text col-md-6">
                     <div className="flex-column align-items-center d-flex">
-                        <h3>Sold: {product.supply}</h3>
+                        <h3>Sold: {product.sold}</h3>
                         <h3>Stock: {product.stock}</h3>
                     </div>
                 </div>
                 <div className="btn-group mx-auto col-md-6">
                     <div className="d-flex flex-column gap-3">
+                        {product.stock<=0 ?
                         <Button
+                        disabled={true}
+                        // onClick={()=>handleSubmit(onSubmit({stock:-1}))}
+                        variant="contained"
+                        color="success"
+                        endIcon={<LocalShipping></LocalShipping>}
+                        size="big"
+                    >
+                        Delivered
+                    </Button>
+                        :
+                        <Button
+                            onClick={()=>handleSubmit(onSubmit({stock:-1}))}
                             variant="contained"
                             color="success"
                             endIcon={<LocalShipping></LocalShipping>}
                             size="big"
                         >
                             Delivered
-                        </Button>
+                        </Button>}
+                        
                         <div className="d-flex flex-row align-items-center justify-content-center gap-2">
                             <FloatingLabel
                                 controlId="floatingInput"
