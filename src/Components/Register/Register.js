@@ -46,7 +46,7 @@ const Register = () => {
       
       useEffect(()=>{
         console.log('hello:::',user)
-        const url = `http://localhost:5000/user`;
+        const url = `https://warehousemanagement123.herokuapp.com/user`;
         if(user){
           fetch (url,{
             method: 'POST',

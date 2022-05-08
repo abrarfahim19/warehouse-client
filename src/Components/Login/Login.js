@@ -13,6 +13,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import Social from "../Social/Social";
+import axios from "axios";
 
 const theme = createTheme();
 
@@ -33,17 +35,20 @@ const Login = () => {
 
     let from = location.state?.from?.pathname || "/";
     if (user){
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const email= data.get("email");
-        const password= data.get("password");
+        const datas = new FormData(event.currentTarget);
+        const email= datas.get("email");
+        const password= datas.get("password");
         await signInWithEmailAndPassword(email, password);
-        
-    };
+        const {data} = await axios.post('https://warehousemanagement123.herokuapp.com/login',{email});
+        console.log(data);
+        localStorage.setItem('accessToken',data.accessToken)
+        navigate(from, { replace: true });
+    };  
 
     return (
         <ThemeProvider theme={theme}>
@@ -115,6 +120,7 @@ const Login = () => {
                         </Grid>
                     </Box>
                 </Box>
+                <Social></Social>
             </Container>
         </ThemeProvider>
     );

@@ -5,10 +5,14 @@ import auth from "../firebase.init";
 const useMyProducts = () =>{
     const [myProducts,setMyProducts] = useState([]);
     const [user] = useAuthState(auth);
-    const url = `http://localhost:5000/userinventory/${user.email}`
+    const url = `https://warehousemanagement123.herokuapp.com/userinventory/${user.email}`
     
     useEffect(()=>{
-        fetch(url)
+        fetch(url,{
+            headers:{
+                authoriation: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then(res => res.json())
         .then(data => setMyProducts(data))
     }, []);

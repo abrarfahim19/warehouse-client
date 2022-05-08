@@ -5,9 +5,9 @@ import MyTable from "../MyTable/MyTable";
 
 const MyItem = () => {
     const [myProducts,setMyProducts] = useMyProducts();
-    const handleEdit = (id, result) => {
-        let url = `http://localhost:5000/inventory/${id}`;
-        fetch(url, {
+    const handleEdit = async (id, result) => {
+        let url = `https://warehousemanagement123.herokuapp.com/inventory/${id}`;
+        await fetch(url, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -29,7 +29,7 @@ const MyItem = () => {
     //handle Delete
     const handleDelete = (id) => {
         console.log("Delete 00", id);
-        let url = `http://localhost:5000/inventory/${id}`;
+        let url = `https://warehousemanagement123.herokuapp.com/inventory/${id}`;
         fetch(url, {
             method: "Delete",
             headers: {

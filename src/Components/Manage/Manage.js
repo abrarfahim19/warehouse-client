@@ -9,7 +9,7 @@ const Manage = () => {
 
     // handle Edit
     const handleEdit = (id, result) => {
-        let url = `http://localhost:5000/inventory/${id}`;
+        let url = `https://warehousemanagement123.herokuapp.com/inventory/${id}`;
         fetch(url, {
             method: "PUT",
             headers: {
@@ -32,7 +32,7 @@ const Manage = () => {
     //handle Delete
     const handleDelete = (id) => {
         console.log("Delete 00", id);
-        let url = `http://localhost:5000/inventory/${id}`;
+        let url = `https://warehousemanagement123.herokuapp.com/inventory/${id}`;
         fetch(url, {
             method: "Delete",
             headers: {

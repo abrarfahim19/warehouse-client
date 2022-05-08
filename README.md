@@ -1,8 +1,8 @@
 # Book WareHouse App
 
-[Live Site Link:](https://github.com/facebook/create-react-app).
+[Live Site Link:](https://warehouse-managing.web.app/).
 
-[Backend Link:](https://github.com/facebook/create-react-app).
+[Backend Link:](https://warehousemanagement123.herokuapp.com/inventory).
 
 The Idea Behind The Website is simple. User will login and add their product. They can restock the item or, if they want, they can also deliver the item. This will decrease the number of item. And this in result show you the stocked Product.
 

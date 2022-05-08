@@ -25,14 +25,15 @@ const Social = () => {
     return (
         <div>
             <hr/>
-            
-                  <ul class="social-media-list">
+            {errorElement}
+                  <ul className="social-media-list">
                   <IconButton onClick={() => signInWithGoogle()}>
                     <li>
-                      <i class="fa fa-google" aria-hidden="true"></i>
+                      <i className="fa fa-google" aria-hidden="true"></i>
                     </li>
                     </IconButton>
                   </ul>
+                  <p className='text-center'>Login With Google</p>
                   <hr/>  
             </div>
     );

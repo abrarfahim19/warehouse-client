@@ -35,7 +35,7 @@ const CustomModal = () => {
     const supplier = data.get('supplier');
     const sold = "0";
     const result = {name,author,price,stock,supplier,image,sold,email};
-    const url = `http://localhost:5000/inventory`;
+    const url = `https://warehousemanagement123.herokuapp.com/inventory`;
     
     fetch (url,{
       method: 'POST',

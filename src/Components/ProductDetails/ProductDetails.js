@@ -28,7 +28,7 @@ const ProductDetails = () => {
         rest.stock = String(parseInt(data.stock)+parseInt(rest.stock));
         // rest.sold = String(parseInt(data.sold)+parseInt(rest.sold));
         rest._id=_id;
-        let url = `http://localhost:5000/inventory/${_id}`;
+        let url = `https://warehousemanagement123.herokuapp.com/inventory/${_id}`;
         fetch(url, {
             method: "PUT",
             headers: {

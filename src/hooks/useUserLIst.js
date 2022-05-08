@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useUserList =() =>{
     const [users,setUsers] = useState([]);
     
-    const url = `http://localhost:5000/user`
+    const url = `https://warehousemanagement123.herokuapp.com/user`
     
     useEffect(()=>{
         fetch(url)

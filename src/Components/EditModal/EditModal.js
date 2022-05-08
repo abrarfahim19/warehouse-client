@@ -11,7 +11,7 @@ function EditModal({item,handleEdit}) {
         
         handleEdit(data._id,data)
         
-        // let url =  `http://localhost:5000/inventory/${data._id}`
+        // let url =  `https://warehousemanagement123.herokuapp.com/inventory/${data._id}`
         // fetch(url,{
         //     method:'PUT',
         //     headers: {

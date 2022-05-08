@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useTopStockProducts = () =>{
     const [topProducts,setTopProducts] = useState([]);
     
-    const url = `http://localhost:5000/maxstock`
+    const url = `https://warehousemanagement123.herokuapp.com/maxstock`
     
     useEffect(()=>{
         fetch(url)

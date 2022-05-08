@@ -12,8 +12,7 @@ const Product = ({ product }) => {
         console.log(id);
     };
     return (
-        <>
-            <Card className="g-1 col-sm-12 col-md-6 mx-auto col-lg-4 vh-80" style={{ width: "15rem" }}>
+            <Card className="g-1 d-flex col-sm-12 col-md-6 mx-auto col-lg-4 vh-80" style={{ width: "10rem" }}>
                 <Card.Img variant="top" src={image} />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
@@ -33,8 +32,6 @@ const Product = ({ product }) => {
                     </Button>
                 </Card.Body>
             </Card>
-            
-        </>
     );
 };
 
