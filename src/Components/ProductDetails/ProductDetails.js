@@ -49,7 +49,6 @@ const ProductDetails = () => {
             <div className=" top flex-row justify-content-around d-flex mt-5">
                 <div className="text col-md-6">
                     <div className="flex-column align-items-center d-flex">
-                        <h3>Sold: {product.sold}</h3>
                         <h3>Stock: {product.stock}</h3>
                     </div>
                 </div>
@@ -131,14 +130,9 @@ const ProductDetails = () => {
                             </h4>
                             <h4>Name: {product.name}</h4>
                             <h4>Author: {product.author}</h4>
+                            <h4>Supplier: {product.supplier}</h4>
                             <h4>Price: {product.price}$</h4>
-                            <h4>Supplier: {product.price}$</h4>
-                            <h5 className="mt-2">
-                                Description: <br /> Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. In saepe
-                                perspiciatis natus eveniet, unde reprehenderit
-                                ab veniam necessitatibus neque pariatur.
-                            </h5>
+                            <h5>Uploaded By: <span className="text-primary"> {product.email}</span></h5>
                         </div>
                     </div>
                 </div>

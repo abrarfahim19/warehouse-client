@@ -19,7 +19,7 @@ const Footer = () => {
     return (
         <div>
             <footer>
-                    <Navbar fixed="bottom" className="justify-content-center mt-5" expand="lg" variant="dark" bg="dark">
+                    <Navbar className="justify-content-center mt-5" expand="lg" variant="dark" bg="dark">
                         <Navbar.Brand >
                             <Copyright className="text-white" sx={{ mt: 2, mb: 2 }} />
                         </Navbar.Brand>

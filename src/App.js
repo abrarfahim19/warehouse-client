@@ -42,7 +42,7 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path="*" element={<Notfound></Notfound>}></Route>
       </Routes>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </div>
   );
 }
