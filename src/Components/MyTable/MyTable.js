@@ -4,7 +4,7 @@ import React from 'react';
 import EditModal from '../EditModal/EditModal'
 
 const MyTable = ({product,handleDelete,handleEdit}) => {
-  const {name,price,image,author,supply,_id} = product;
+  const {name,price,image,author,stock,_id} = product;
 
   return (
     <div>
@@ -15,7 +15,7 @@ const MyTable = ({product,handleDelete,handleEdit}) => {
             <h5 >{name}</h5>
           </div>
           <h6 className="card-title d-none d-sm-none d-md-block col-md-3">{author}</h6>
-          <h6 className="card-title col-sm-3 col-md-3">{supply}</h6>
+          <h6 className="card-title col-sm-3 col-md-3">{stock}</h6>
           <div className="buttons col-sm-3 col-md-3">
             <div className="d-flex justify-content-between">
             <EditModal handleEdit={handleEdit} item={product} ></EditModal>

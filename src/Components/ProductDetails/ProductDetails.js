@@ -1,22 +1,37 @@
-import { AddBusiness, LocalShipping, ManageAccounts } from "@mui/icons-material";
+import {
+    AddBusiness,
+    LocalShipping,
+    ManageAccounts,
+} from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React from "react";
 import { FloatingLabel, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import useProductDetails from "../../hooks/useProductDetails";
 
 const ProductDetails = () => {
     const { Id } = useParams();
     const [product, setProduct] = useProductDetails(Id);
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+
     const navigate = useNavigate();
     return (
         <div>
             <div className=" top flex-row justify-content-around d-flex mt-5">
                 <div className="text col-md-6">
                     <div className="flex-column align-items-center d-flex">
-                        <h3>Supplied: {product.supply}</h3>
                         <h3>Sold: {product.supply}</h3>
-                        <h3>Stock: {product.supply}</h3>
+                        <h3>Stock: {product.stock}</h3>
                     </div>
                 </div>
                 <div className="btn-group mx-auto col-md-6">
@@ -36,11 +51,22 @@ const ProductDetails = () => {
                                 className="mb-3"
                             >
                                 <Form.Control
+                                    {...register("stock", { min: 1, max: 99 })}
                                     type="number"
                                     placeholder="Resupply Items"
                                 />
+                                {errors.stock && (
+                                    <span
+                                        className="d-block text-danger"
+                                        style={{ fontSize: "12px" }}
+                                    >
+                                        min max value is not mantained(min=1,
+                                        max=99)
+                                    </span>
+                                )}
                             </FloatingLabel>
                             <Button
+                                onClick={handleSubmit(onSubmit)}
                                 variant="contained"
                                 color="primary"
                                 endIcon={<AddBusiness></AddBusiness>}
@@ -84,7 +110,9 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <Button onClick={()=> navigate('/manage')} className="mx-auto mt-5 d-flex w-25"
+            <Button
+                onClick={() => navigate("/manage")}
+                className="mx-auto mt-5 d-flex w-25"
                 variant="outlined"
                 color="error"
                 endIcon={<ManageAccounts></ManageAccounts>}

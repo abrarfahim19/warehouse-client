@@ -8,9 +8,9 @@ const Home = () => {
 
     return (
         <div>
-            <CustomModal modalText={'Hello'}></CustomModal>
-            <h1>This is Home</h1>
+            <img className='w-100' src='banner.png' alt="" />
             <div className="row d-flex mx-auto align-items-center">
+            <CustomModal modalText={'Hello'}></CustomModal>
             {
                 products.map(product => <Product key={product._id} product={product}></Product>)
             }

@@ -1,6 +1,8 @@
 import { AddCircle } from '@mui/icons-material';
 import { Box, Button, Fade, Modal, TextField, Typography } from '@mui/material';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const style = {
     position: 'absolute',
@@ -16,19 +18,22 @@ const style = {
   };
 
 const CustomModal = () => {
-    const [open, setOpen] = React.useState(false);
+  const [user] = useAuthState(auth);
+  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    let name = data.get('name');
+    const email = user.email;
+    const name = data.get('name');
     const author = data.get('author');
     const price = data.get('price');
-    const supply = data.get('supply');
+    const stock = data.get('stock');
     const image = data.get('image');
-    const result = {name,author,price,supply,image};
+    const supplier = data.get('supplier');
+    const result = {name,author,price,stock,supplier,image,email};
     const url = `http://localhost:5000/inventory`;
     
     fetch (url,{
@@ -75,6 +80,14 @@ const CustomModal = () => {
                             autoFocus
                             />
           <TextField margin="normal"
+                            required
+                            fullWidth
+                            id="supplier"
+                            label="Supplier"
+                            name="supplier"
+                            autoFocus
+                            />
+          <TextField margin="normal"
                             fullWidth
                             type='number'
                             id="price"
@@ -85,9 +98,9 @@ const CustomModal = () => {
           <TextField margin="normal"
                             fullWidth
                             type='number'
-                            id="supply"
-                            label="Supply"
-                            name="supply"
+                            id="stock"
+                            label="Stock"
+                            name="stock"
                             autoFocus
                             />
           <TextField margin="normal"
