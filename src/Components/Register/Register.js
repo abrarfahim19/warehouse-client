@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert"
+import Social from "../Social/Social";
 
 const theme = createTheme();
 
@@ -149,6 +150,7 @@ const Register = () => {
                 </Grid>
               </Box>
             </Box>
+            <Social></Social>
           </Container>
         </ThemeProvider>
       );
